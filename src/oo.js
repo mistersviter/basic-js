@@ -1,6 +1,4 @@
-const CustomError = require("../extensions/custom-error");
-
-module.exports = function transform(arr) {
+function transform(arr) {
     if (Array.isArray(arr)) {
         let newArr = arr.slice();
         newArr.map((val, idx, newArr) => {
@@ -25,7 +23,18 @@ module.exports = function transform(arr) {
                 } else newArr.splice(idx, 1, '');
             }
         });
-        newArr = newArr.filter((element) => element !== '');
+       newArr = newArr.filter((element) => element !== '');
         return newArr;
     } else throw Error;
 }
+
+arr = [ '--double-next',
+    0,
+    '--double-prev',
+    'GHI',
+    '--double-next',
+    { '0': 'first', '1': 'second', length: 2 },
+    3.14,
+    'DEF',
+    '--discard-next' ];
+transform(arr);
